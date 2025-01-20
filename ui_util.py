@@ -1,4 +1,6 @@
 import random
+import time
+
 import pyautogui
 from PIL import ImageGrab
 import window_util
@@ -38,6 +40,7 @@ def do_click(x, y, random_offset_this_time):
 
     pyautogui.moveTo(real_x, real_y)
     pyautogui.click()
+    time.sleep(0.2)
 
 
 def move_to(x1, y1, x2, y2):

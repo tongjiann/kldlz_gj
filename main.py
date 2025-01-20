@@ -1,35 +1,62 @@
+import time
+
+import log_util
+import ui_util
 from load_config import get_coordinate_info
 
-coordinate_info = {}
+main_info = {}
+
+total_time = 0
+
+success_time = 0
+
+log = log_util.Logger()
 
 
-def start_fighting():
-    coordinate_info[""]
-
-
-def update_hero_info():
-    pass
-
-
-def do_fighting():
-    # 更新当前每格状态
-    update_hero_info()
-    # 进行召唤
-
-    # 进行祈愿
-
-    # 进行神话召唤
-
-    pass
+def buy_energy():
+    energy_info = main_info["联合作战"]["精力"]
+    ui_util.click(energy_info["x"], energy_info["y"])
+    free_x = energy_info["免费精力"]["x"]
+    free_y = energy_info["免费精力"]["y"]
+    free_color = ui_util.get_color_at_coordinate(free_x, free_y)
+    if free_color == energy_info["免费精力"]["color"]:
+        for i in range(5):
+            ui_util.click(free_x, free_y)
+            ui_util.click(main_info["联合作战"]["x"], main_info["联合作战"]["y"])
+        log.info("购买免费精力")
+        return True
+    today_x = energy_info["今天"]["x"]
+    today_y = energy_info["今天"]["y"]
+    today_color = ui_util.get_color_at_coordinate(today_x, today_y)
+    if today_color == energy_info["今天"]["color"]:
+        ui_util.click(free_x, free_y)
+        ui_util.click(main_info["联合作战"]["x"], main_info["联合作战"]["y"])
+        log.info("购买今日精力")
+        return True
+    miss_x = energy_info["错过"]["x"]
+    miss_y = energy_info["错过"]["y"]
+    miss_color = ui_util.get_color_at_coordinate(miss_x, miss_y)
+    if miss_color == energy_info["错过"]["color"]:
+        ui_util.click(free_x, free_y)
+        ui_util.click(main_info["联合作战"]["x"], main_info["联合作战"]["y"])
+        log.info("购买错过精力")
+        return True
 
 
 if __name__ == '__main__':
     global coordinate_info
     # 加载坐标信息
-    coordinate_info = get_coordinate_info()
+    main_info = get_coordinate_info()["主界面"]
 
-    # 开始联合作战
-    start_fighting()
+    ui_util.click(main_info["联合作战"]["x"], main_info["联合作战"]["y"])
 
-    # 进行联合作战
-    do_fighting()
+    time.sleep(1)
+    random_x = main_info["联合作战"]["随机匹配"]["x"]
+    random_y = main_info["联合作战"]["随机匹配"]["y"]
+
+    ui_util.click(random_x, random_y)
+    time.sleep(5)
+    color = ui_util.get_color_at_coordinate(random_x, random_y)
+    if color == main_info["联合作战"]["随机匹配"]["color"]:
+        # 没有精力了，要去买体力
+        buy_energy()
