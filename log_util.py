@@ -18,6 +18,10 @@ class Logger:
         # 添加控制台输出处理器到日志记录器
         self.logger.addHandler(console_handler)
 
+    def debug(self, message):
+        """输出DEBUG级别的日志"""
+        self.logger.debug(message)
+
     def info(self, message):
         """输出INFO级别的日志"""
         self.logger.info(message)

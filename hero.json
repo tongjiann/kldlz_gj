@@ -3,105 +3,255 @@
     "猎手": {
       "id": 1,
       "name": "猎手",
-      "level": "普通"
+      "level": "普通",
+      "valid_checking_list": [
+        [
+          "#80949f",
+          "#3bc292",
+          "#979a9b",
+          "#8396a1"
+        ]
+      ]
     },
     "爆破手": {
       "id": 2,
       "name": "爆破手",
-      "level": "普通"
+      "level": "普通",
+      "valid_checking_list": [
+        [
+          "#80949f",
+          "#7d909c",
+          "#4e3529",
+          "#8396a1"
+        ]
+      ]
     },
     "战士": {
       "id": 3,
       "name": "战士",
       "level": "普通",
       "valid_checking_list": [
+        [
+          "#80949f",
+          "#748590",
+          "#7b8a94",
+          "#8396a1"
+        ]
       ]
     },
     "元素灵": {
       "id": 4,
       "name": "元素灵",
-      "level": "普通"
+      "level": "普通",
+      "valid_checking_list": [
+        [
+          "#80949f",
+          "#7d909c",
+          "#72dffd",
+          "#8396a1"
+        ]
+      ]
     },
     "游侠": {
       "id": 5,
       "name": "游侠",
-      "level": "普通"
+      "level": "普通",
+      "valid_checking_list": [
+        [
+          "#80949f",
+          "#7d909c",
+          "#3f4347",
+          "#8396a1"
+        ]
+      ]
     }
   },
   "精英": {
     "浮游炮": {
       "id": 6,
       "name": "浮游炮",
-      "level": "精英"
+      "level": "精英",
+      "valid_checking_list": [
+        [
+          "#618ce5",
+          "#1f1d1e",
+          "#4f5a65",
+          "#618ce5"
+        ]
+      ]
     },
     "弓箭手": {
       "id": 7,
       "name": "弓箭手",
-      "level": "精英"
+      "level": "精英",
+      "valid_checking_list": [
+        [
+          "#618ce5",
+          "#506ead",
+          "#ac8f66",
+          "#618ce5"
+        ]
+      ]
     },
     "十字军": {
       "id": 8,
       "name": "十字军",
-      "level": "精英"
+      "level": "精英",
+      "valid_checking_list": [
+        [
+          "#618ce5",
+          "#14150b",
+          "#acd5ed",
+          "#618ce5"
+        ]
+      ]
     },
     "修女": {
       "id": 9,
       "name": "修女",
-      "level": "精英"
+      "level": "精英",
+      "valid_checking_list": [
+        [
+          "#618ce5",
+          "#5d86dc",
+          "#19192f",
+          "#618ce5"
+        ]
+      ]
     },
     "鬼武者": {
       "id": 10,
       "name": "鬼武者",
-      "level": "精英"
+      "level": "精英",
+      "valid_checking_list": [
+        [
+          "#618ce5",
+          "#5d86dc",
+          "#282637",
+          "#618ce5"
+        ]
+      ]
     }
   },
   "稀有": {
     "脉冲装置": {
       "id": 11,
       "name": "脉冲装置",
-      "level": "稀有"
+      "level": "稀有",
+      "valid_checking_list": [
+        [
+          "#885fdb",
+          "#967a50",
+          "#594730",
+          "#8c61dc"
+        ]
+      ]
     },
     "演奏家": {
       "id": 12,
       "name": "演奏家",
-      "level": "稀有"
+      "level": "稀有",
+      "valid_checking_list": [
+        [
+          "#885fdb",
+          "#ecd5a8",
+          "#d6707c",
+          "#8c61dc"
+        ]
+      ]
     },
     "火枪手": {
       "id": 13,
       "name": "火枪手",
-      "level": "稀有"
+      "level": "稀有",
+      "valid_checking_list": [
+        [
+          "#885fdb",
+          "#e1bebe",
+          "#368ab4",
+          "#8c61dc"
+        ]
+      ]
     },
     "雪鸮投手": {
       "id": 14,
       "name": "雪鸮投手",
-      "level": "稀有"
+      "level": "稀有",
+      "valid_checking_list": [
+        [
+          "#885fdb",
+          "#3a2b4e",
+          "#898152",
+          "#8c61dc"
+        ]
+      ]
     },
     "巨剑企鹅": {
       "id": 15,
       "name": "巨剑企鹅",
-      "level": "稀有"
+      "level": "稀有",
+      "valid_checking_list": [
+        [
+          "#885fdb",
+          "#707099",
+          "#3d3538",
+          "#8c61dc"
+        ]
+      ]
     }
   },
   "传说": {
     "风暴魔导": {
       "id": 16,
       "name": "风暴魔导",
-      "level": "传说"
+      "level": "传说",
+      "valid_checking_list": [
+        [
+          "#ddbe4d",
+          "#000e1a",
+          "#ebebe4",
+          "#ddbe4d"
+        ]
+      ]
     },
     "时空炮手": {
       "id": 17,
       "name": "时空炮手",
-      "level": "传说"
+      "level": "传说",
+      "valid_checking_list": [
+        [
+          "#ddbe4d",
+          "#464c4c",
+          "#c6c5c6",
+          "#ddbe4d"
+        ]
+      ]
     },
     "毁灭装置": {
       "id": 18,
       "name": "毁灭装置",
-      "level": "传说"
+      "level": "传说",
+      "valid_checking_list": [
+        [
+          "#ddbe4d",
+          "#251b1d",
+          "#6b6b6b",
+          "#a08b3d"
+        ]
+      ]
     },
     "牛头战士": {
       "id": 19,
       "name": "牛头战士",
-      "level": "传说"
+      "level": "传说",
+      "valid_checking_list": [
+        [
+          "#ddbe4d",
+          "#d9bb4a",
+          "#c7a170",
+          "#00000e"
+        ]
+      ]
     }
   },
   "神话": {
@@ -143,7 +293,15 @@
     "焰影魔龙": {
       "id": 27,
       "name": "焰影魔龙",
-      "level": "神话"
+      "level": "神话",
+      "valid_checking_list": [
+        [
+          "#df7332",
+          "#273834",
+          "#33433a",
+          "#ffbd50"
+        ]
+      ]
     },
     "闪光": {
       "id": 28,
@@ -158,12 +316,28 @@
     "妖精颂唱者": {
       "id": 30,
       "name": "妖精颂唱者",
-      "level": "神话"
+      "level": "神话",
+      "valid_checking_list": [
+        [
+          "#df7332",
+          "#364161",
+          "#754332",
+          "#3d3f55"
+        ]
+      ]
     },
     "投币机械": {
       "id": 31,
       "name": "投币机械",
-      "level": "神话"
+      "level": "神话",
+      "valid_checking_list": [
+        [
+          "#df7332",
+          "#f2a175",
+          "#f8a270",
+          "#382e13"
+        ]
+      ]
     },
     "鳄霸": {
       "id": 32,
@@ -173,7 +347,15 @@
     "圣使": {
       "id": 33,
       "name": "圣使",
-      "level": "神话"
+      "level": "神话",
+      "valid_checking_list": [
+        [
+          "#df7332",
+          "#795a48",
+          "#c23441",
+          "#fcbb4f"
+        ]
+      ]
     },
     "爆炸咪": {
       "id": 34,
@@ -189,6 +371,25 @@
       "id": 36,
       "name": "荧",
       "level": "神话"
+    },
+    "登神圣使": {
+      "id": 37,
+      "name": "登神圣使",
+      "level": "神话",
+      "valid_checking_list": [
+        [
+          "#df7332",
+          "#f1c280",
+          "#e4794f",
+          "#fcbb4f"
+        ],
+        [
+          "#df7332",
+          "#fffcea",
+          "#ffffb8",
+          "#fcbb4f"
+        ]
+      ]
     }
   }
 }
