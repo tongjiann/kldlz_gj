@@ -55,7 +55,7 @@ class Logger:
 log = None
 
 
-def get_logger(log_file=None, log_level=logging.DEBUG):
+def get_logger(log_file=None, log_level=logging.INFO):
     """
     获取全局单例日志对象。
 

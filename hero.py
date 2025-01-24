@@ -251,7 +251,7 @@ class HeroManager:
             time.sleep(5)
 
     def adjust_speed(self):
-        self.log.info("调整倍速")
+        self.log.debug("调整倍速")
         color = ui_util.get_color_at_coordinate(self.fighting_info["速度"]["x"], self.fighting_info["速度"]["y"], )
         if color != self.fighting_info["速度"]["color"]:
             ui_util.click_target(self.fighting_info["速度"]["x"], self.fighting_info["速度"]["y"])

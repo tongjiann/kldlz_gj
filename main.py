@@ -64,7 +64,7 @@ if __name__ == '__main__':
         time.sleep(1)
         random_x = main_info["联合作战"]["随机匹配"]["x"]
         random_y = main_info["联合作战"]["随机匹配"]["y"]
-
+        log.info("准备进入联合作战")
         ui_util.click_slow(random_x, random_y)
         time.sleep(5)
         color = ui_util.get_color_at_coordinate(random_x, random_y)
@@ -72,5 +72,4 @@ if __name__ == '__main__':
             log.info("没有精力了，要去买体力")
             buy_energy()
         else:
-            log.info("准备进入联合作战")
             manager.cycling_fighting()
