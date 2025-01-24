@@ -228,7 +228,7 @@ class HeroManager:
         color = ui_util.get_color_at_coordinate(superstar_x, superstar_y)
         while color == superstar_color:
             ui_util.click(superstar_x, superstar_y)
-            time.sleep(0.5)
+            time.sleep(2)
             color = ui_util.get_color_at_coordinate(superstar_x, superstar_y)
 
     def cycling_fighting(self):
