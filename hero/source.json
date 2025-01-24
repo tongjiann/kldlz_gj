@@ -1,0 +1,234 @@
+{
+  "普通": {
+    "猎手": {
+      "id": "1-1",
+      "name": "猎手",
+      "level": "普通",
+      "valid_checking_list": []
+    },
+    "爆破手": {
+      "id": "1-2",
+      "name": "爆破手",
+      "level": "普通",
+      "valid_checking_list": []
+    },
+    "战士": {
+      "id": "1-3",
+      "name": "战士",
+      "level": "普通",
+      "valid_checking_list": []
+    },
+    "元素灵": {
+      "id": "1-4",
+      "name": "元素灵",
+      "level": "普通",
+      "valid_checking_list": []
+    },
+    "游侠": {
+      "id": "1-5",
+      "name": "游侠",
+      "level": "普通",
+      "valid_checking_list": []
+    }
+  },
+  "精英": {
+    "浮游炮": {
+      "id": "2-1",
+      "name": "浮游炮",
+      "level": "精英",
+      "valid_checking_list": []
+    },
+    "弓箭手": {
+      "id": "2-2",
+      "name": "弓箭手",
+      "level": "精英",
+      "valid_checking_list": []
+    },
+    "十字军": {
+      "id": "2-3",
+      "name": "十字军",
+      "level": "精英",
+      "valid_checking_list": []
+    },
+    "修女": {
+      "id": "2-4",
+      "name": "修女",
+      "level": "精英",
+      "valid_checking_list": []
+    },
+    "鬼武者": {
+      "id": "2-5",
+      "name": "鬼武者",
+      "level": "精英",
+      "valid_checking_list": []
+    }
+  },
+  "稀有": {
+    "脉冲装置": {
+      "id": "3-1",
+      "name": "脉冲装置",
+      "level": "稀有",
+      "valid_checking_list": []
+    },
+    "演奏家": {
+      "id": "3-2",
+      "name": "演奏家",
+      "level": "稀有",
+      "valid_checking_list": []
+    },
+    "火枪手": {
+      "id": "3-3",
+      "name": "火枪手",
+      "level": "稀有",
+      "valid_checking_list": []
+    },
+    "雪鸮投手": {
+      "id": "3-4",
+      "name": "雪鸮投手",
+      "level": "稀有",
+      "valid_checking_list": []
+    },
+    "巨剑企鹅": {
+      "id": "3-5",
+      "name": "巨剑企鹅",
+      "level": "稀有",
+      "valid_checking_list": []
+    }
+  },
+  "传说": {
+    "风暴魔导": {
+      "id": "4-1",
+      "name": "风暴魔导",
+      "level": "传说",
+      "valid_checking_list": []
+    },
+    "时空炮手": {
+      "id": "4-2",
+      "name": "时空炮手",
+      "level": "传说",
+      "valid_checking_list": []
+    },
+    "毁灭装置": {
+      "id": "4-3",
+      "name": "毁灭装置",
+      "level": "传说",
+      "valid_checking_list": []
+    },
+    "牛头战士": {
+      "id": "4-4",
+      "name": "牛头战士",
+      "level": "传说",
+      "valid_checking_list": []
+    }
+  },
+  "神话": {
+    "暗影猎手": {
+      "id": "5-1",
+      "name": "暗影猎手",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "玄武": {
+      "id": "5-2",
+      "name": "玄武",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "巫毒祭祀": {
+      "id": "5-3",
+      "name": "巫毒祭祀",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "狮鹫": {
+      "id": "5-4",
+      "name": "狮鹫",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "凛冬之心": {
+      "id": "5-5",
+      "name": "凛冬之心",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "终结者": {
+      "id": "5-6",
+      "name": "终结者",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "绯红之镰": {
+      "id": "5-7",
+      "name": "绯红之镰",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "焰影魔龙": {
+      "id": "5-8",
+      "name": "焰影魔龙",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "闪光": {
+      "id": "5-9",
+      "name": "闪光",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "剑灵": {
+      "id": "5-10",
+      "name": "剑灵",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "妖精颂唱者": {
+      "id": "5-11",
+      "name": "妖精颂唱者",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "投币机械": {
+      "id": "5-12",
+      "name": "投币机械",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "鳄霸": {
+      "id": "5-13",
+      "name": "鳄霸",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "圣使": {
+      "id": "5-14",
+      "name": "圣使",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "爆炸咪": {
+      "id": "5-15",
+      "name": "爆炸咪",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "死灵巫祝": {
+      "id": "5-16",
+      "name": "死灵巫祝",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "荧": {
+      "id": "5-17",
+      "name": "荧",
+      "level": "神话",
+      "valid_checking_list": []
+    },
+    "登神圣使": {
+      "id": "5-18",
+      "name": "登神圣使",
+      "level": "神话",
+      "valid_checking_list": []
+    }
+  }
+}

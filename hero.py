@@ -3,36 +3,33 @@ import time
 
 import log_util
 import ui_util
-from load_config import get_coordinate_info
+from load_config import get_coordinate_info, get_hero_info
 
 
 class HeroManager:
     def __init__(self):
         self.hero_map = {}
-        self.log = log_util.Logger()
+        self.log = log_util.get_logger()
         self.hero_info = {}
         self.is_success = False
         self.coordinate_info = get_coordinate_info()
         self.fighting_info = self.coordinate_info["战斗界面"]
         map_data = self.fighting_info["英雄检查点"]
-        y = map_data["y"]
         self.check_points = [
-            (map_data["x1"], y),
-            (map_data["x2"], y),
-            (map_data["x3"], y),
-            (map_data["x4"], y),
+            (map_data['1']["x"], map_data['1']["y"]),
+            (map_data['2']["x"], map_data['2']["y"]),
+            (map_data['3']["x"], map_data['3']["y"]),
+            (map_data['4']["x"], map_data['4']["y"]),
         ]
 
     def load_hero_map(self):
         try:
-            with open("hero.json", 'r', encoding='utf-8') as file:
-                data = json.load(file)
+            data = get_hero_info()
             for level, heroes in data.items():
                 for name, obj in heroes.items():
                     if "valid_checking_list" in obj and obj["valid_checking_list"]:
                         for valid_checking in obj["valid_checking_list"]:
-                            key = "".join(valid_checking)
-                            self.hero_map[key] = obj
+                            self.hero_map[valid_checking] = obj
         except FileNotFoundError:
             self.log.error("英雄数据文件 hero.json 未找到")
         except json.JSONDecodeError:
@@ -46,8 +43,6 @@ class HeroManager:
     def update_current_hero_info(self):
         self.hero_info = {}
         # 加载必要数据
-        if not self.coordinate_info:
-            self.load_coordinate_info()
         if not self.hero_map:
             self.load_hero_map()
 
@@ -73,13 +68,14 @@ class HeroManager:
             ui_util.click(x, y)
 
             try:
+                valid_check = self.fighting_info["英雄检查点"]["合法性检测"]
                 # 获取验证点的颜色
                 color = ui_util.get_color_at_coordinate(*(
-                    [self.fighting_info["英雄检查点"]["valid_check_x"],
-                     self.fighting_info["英雄检查点"]["valid_check_y"]]))
+                    [valid_check["x"],
+                     valid_check["y"]]))
 
                 # 校验颜色是否匹配
-                if self.fighting_info["英雄检查点"]["valid_check_color"] == color:
+                if valid_check["color"] == color:
                     # 获取当前英雄的颜色信息作为键值
                     key = "".join(self.get_current_hero_color_info())
 
@@ -91,6 +87,8 @@ class HeroManager:
                         self.log.debug(f"匹配到英雄: {name}，坐标: {grid}, x: {x}, y: {y}")
                     else:
                         self.log.debug(f"英雄数据未匹配: 当前 key {key}")
+                        self.hero_info[grid] = "-1"
+
                 else:
                     self.log.debug(f"颜色校验失败: 坐标 {grid}, 当前颜色: {color}")
             except KeyError as e:
@@ -102,7 +100,7 @@ class HeroManager:
         return dict
 
     def deal_with_hero(self):
-        save_list = [15, 12, 1, 2, 3]
+        save_list = ["3-2", "3-5", "1-1", "1-2", "1-3"]
         # 定义 X 和 Y 范围
         x_range = range(1, 4)
         y_range = range(1, 7)
@@ -120,37 +118,45 @@ class HeroManager:
                     self.log.debug(f"坐标 {grid} 不存在于地图中或无英雄，跳过")
                     continue
                 current_hero = self.hero_info[grid]
-                if current_hero not in save_list and current_hero < 20:
+                if current_hero not in save_list and not current_hero.startswith("5-"):
                     self.do_sell(grid_map[grid]["x"], grid_map[grid]["y"])
-                elif current_hero == 1:
-                    if grid != "3-1" and self.hero_info["3-1"] != 1:
+                elif current_hero == "1-1":
+                    if grid != "3-1" and self.hero_info["3-1"] != current_hero:
                         ui_util.move_to(grid_map[grid]["x"], grid_map[grid]["y"],
                                         grid_map["3-1"]["x"], grid_map["3-1"]["y"])
+                        self.hero_info[grid] = self.hero_info["3-1"]
+                        self.hero_info["3-1"] = current_hero
                     elif grid != "3-1":
                         self.do_sell(grid_map[grid]["x"], grid_map[grid]["y"])
-                elif current_hero == 33:
-                    ui_util.click(grid_map[grid]["x"], grid_map[grid]["y"])
+                elif current_hero == "5-14":
+                    # 移动到1-3进行登神
+                    target_x, target_y = grid_map["1-3"]["x"], grid_map["1-3"]["y"]
+                    if grid != "1-3":
+                        ui_util.move_to(grid_map[grid]["x"], grid_map[grid]["y"], target_x, target_y)
+                    time.sleep(1)
+                    ui_util.click(target_x, target_y)
                     ui_util.click(
-                        grid_map[grid]["x"] + self.fighting_info["合成偏移"]["x"],
-                        grid_map[grid]["y"] + self.fighting_info["合成偏移"]["y"])
-                elif current_hero == 37:
-                    if grid != "1-1" and self.hero_info["1-1"] != 37:
+                        target_x + self.fighting_info["合成偏移"]["x偏移"],
+                        target_y + self.fighting_info["合成偏移"]["y偏移"])
+                elif current_hero == "5-18":
+                    if grid != "1-1" and self.hero_info["1-1"] != current_hero:
                         ui_util.move_to(grid_map[grid]["x"], grid_map[grid]["y"],
                                         grid_map["1-1"]["x"], grid_map["1-1"]["y"])
         except KeyError as e:
+            self.log.error(e)
             return
 
     def do_sell(self, x, y):
         ui_util.click(x, y)
         for i in range(3):
-            ui_util.click(x + self.fighting_info["出售偏移"]["x"], y + self.fighting_info["出售偏移"]["y"])
+            ui_util.click(x + self.fighting_info["出售偏移"]["x偏移"], y + self.fighting_info["出售偏移"]["y偏移"])
 
     def call_if_necessary(self):
         self.log.debug("尝试召唤英雄")
         values = self.hero_info.values()
-        if 1 in values and 2 in values and 3 in values and (
-                list(self.hero_info.values()).count(1) + list(self.hero_info.values()).count(2) + list(
-                self.hero_info.values()).count(3) >= 5):
+        if "1-1" in values and "1-2" in values and "1-3" in values and (
+                list(self.hero_info.values()).count("1-1") + list(self.hero_info.values()).count("1-2") + list(
+            self.hero_info.values()).count("1-3") >= 5):
             return False
 
         self.back_to_fighting_main()
@@ -166,21 +172,26 @@ class HeroManager:
 
     def call_boss(self):
         self.log.debug("尝试召唤boss")
-        ui_util.click(self.fighting_info["BOSS挑战"]["x"],
-                      self.fighting_info["BOSS挑战"]["y"])
+        x = self.fighting_info["BOSS挑战"]["x"]
+        y = self.fighting_info["BOSS挑战"]["y"]
+        current_color = self.fighting_info["BOSS挑战"]["color"]
+        color = ui_util.get_color_at_coordinate(x, y)
+        if current_color == color:
+            self.log.debug("召唤boss")
+            ui_util.click(x, y)
 
     def pray_if_necessary(self):
         self.log.debug("尝试祈愿英雄")
         values = self.hero_info.values()
-        if 12 in values and 15 in values and (
-                list(self.hero_info.values()).count(12) + list(self.hero_info.values()).count(15) >= 3):
+        if "3-2" in values and "3-5" in values and (
+                list(self.hero_info.values()).count("3-2") + list(self.hero_info.values()).count("3-5") >= 3):
             return False
         self.back_to_fighting_main()
         pray = self.fighting_info["祈愿"]
         ui_util.click(pray["x"], pray["y"])
-        for i in range(7):
+        for i in range(10):
             ui_util.click(pray["稀有"]["x"], pray["稀有"]["y"])
-            time.sleep(0.7)
+            time.sleep(0.8)
         self.back_to_fighting_main()
         return True
 
@@ -191,7 +202,7 @@ class HeroManager:
         if color == self.fighting_info["结束战斗"]["确认"]["color"]:
             label_color = ui_util.get_color_at_coordinate(self.fighting_info["结束战斗"]["标记"]["x"],
                                                           self.fighting_info["结束战斗"]["标记"]["y"])
-            if label_color == self.fighting_info["结束战斗"]["标记"]["胜利"]:
+            if label_color == self.fighting_info["结束战斗"]["标记"]["color"]:
                 self.log.info("结束战斗，胜利")
                 res = True
                 self.is_success = True
@@ -207,34 +218,42 @@ class HeroManager:
         :return:
         '''
 
-        return not list(self.hero_info.values()).count(37) >= 1
+        return not list(self.hero_info.values()).count("5-18") >= 1
 
     def call_superstar(self):
-        ui_util.click(self.fighting_info["神话召唤"]["2"]["x"], self.fighting_info["神话召唤"]["2"]["y"])
+        self.log.debug("召唤神话英雄")
+        superstar_x = self.fighting_info["神话召唤"]["2"]["x"]
+        superstar_y = self.fighting_info["神话召唤"]["2"]["y"]
+        superstar_color = self.fighting_info["神话召唤"]["2"]["color"]
+        color = ui_util.get_color_at_coordinate(superstar_x, superstar_y)
+        while color == superstar_color:
+            ui_util.click(superstar_x, superstar_y)
+            time.sleep(0.5)
+            color = ui_util.get_color_at_coordinate(superstar_x, superstar_y)
 
     def cycling_fighting(self):
+        self.log.info("进入联合作战")
         self.wait_for_80()
+        self.hero_info = {}
         while True:
             self.adjust_speed()
-            if manager.need_call_or_pray():
-                manager.update_current_hero_info()
-                call1 = manager.call_if_necessary()
-                call2 = manager.pray_if_necessary()
-                if not call1 and not call2:
-                    manager.call_superstar()
-                manager.deal_with_hero()
-
+            if self.need_call_or_pray():
+                self.call_if_necessary()
+                self.pray_if_necessary()
             else:
                 self.upgrade_superstar_level()
-            manager.call_boss()
-
-            if manager.quit_if_finished():
+            self.update_current_hero_info()
+            self.deal_with_hero()
+            self.call_superstar()
+            self.call_boss()
+            if self.quit_if_finished():
                 return self.is_success
             time.sleep(5)
 
     def adjust_speed(self):
+        self.log.info("调整倍速")
         color = ui_util.get_color_at_coordinate(self.fighting_info["速度"]["x"], self.fighting_info["速度"]["y"], )
-        if color == self.fighting_info["速度"]["color"]:
+        if color != self.fighting_info["速度"]["color"]:
             ui_util.click_target(self.fighting_info["速度"]["x"], self.fighting_info["速度"]["y"])
 
     def upgrade_superstar_level(self):
@@ -248,11 +267,13 @@ class HeroManager:
     def wait_for_80(self):
         time.sleep(5)
         start_time = time.time()
+        self.log.info("等待80")
+        self.adjust_speed()
         color = ui_util.get_color_at_coordinate(self.fighting_info["80"]["x"], self.fighting_info["80"]["y"])
         target_color = self.fighting_info["80"]["color"]
-        while color == target_color:
+        while color != target_color:
             color = ui_util.get_color_at_coordinate(self.fighting_info["80"]["x"], self.fighting_info["80"]["y"])
-            if time.time() - start_time > 3000:
+            if time.time() - start_time > 20:
                 break
         self.call_if_necessary()
         self.log.debug("到80了")
@@ -260,6 +281,7 @@ class HeroManager:
 
 if __name__ == '__main__':
     manager = HeroManager()
+    # manager.call_superstar()
     manager.cycling_fighting()
 
 #

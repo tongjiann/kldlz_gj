@@ -7,7 +7,7 @@ window_title = "快来当领主"
 refresh_time = 5000
 last_updated = 0
 window = None
-logger = log_util.Logger()
+logger = log_util.get_logger()
 
 
 # This function retrieves a list of all windows with their titles

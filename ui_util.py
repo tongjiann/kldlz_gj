@@ -25,6 +25,11 @@ def click(x, y):
     do_click(x, y, True)
 
 
+def click_slow(x, y):
+    do_click(x, y, True)
+    time.sleep(0.7)
+
+
 def click_target(x, y):
     do_click(x, y, False)
 
@@ -40,7 +45,10 @@ def do_click(x, y, random_offset_this_time):
 
     pyautogui.moveTo(real_x, real_y)
     pyautogui.click()
-    time.sleep(0.2)
+
+
+def move_to_target(x1, y1, x2, y2):
+    do_move_to(x1, y1, x2, y2, False)
 
 
 def move_to(x1, y1, x2, y2):
@@ -127,8 +135,24 @@ def get_colors_at_coordinates(coordinates):
     return colors
 
 
+def long_click(x, y, duration):
+    if not is_load:
+        do_load()
+    real_x = x + offset_x
+    real_y = y + offset_y
+    if need_random_offset:
+        real_x += random.uniform(-5, 5)
+        real_y += random.uniform(-5, 5)
+
+    pyautogui.mouseDown(x=real_x, y=real_y)
+    time.sleep(duration)
+    pyautogui.mouseUp()
+
+
 if __name__ == "__main__":
+    long_click(525, 1120, 5)
+
     # 示例调用
-    coordinates = [(100, 200), (150, 250), (200, 300)]
-    colors = get_colors_at_coordinates(coordinates)
-    print("获取到的颜色值:", colors)
+    # coordinates = [(100, 200), (150, 250), (200, 300)]
+    # colors = get_colors_at_coordinates(coordinates)
+    # print("获取到的颜色值:", colors)

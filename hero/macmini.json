@@ -4,19 +4,25 @@
       "id": "1-1",
       "name": "猎手",
       "level": "普通",
-      "valid_checking_list": []
+      "valid_checking_list": [
+        "#8194a0#81949f#80929d#8699a4"
+      ]
     },
     "爆破手": {
       "id": "1-2",
       "name": "爆破手",
       "level": "普通",
-      "valid_checking_list": []
+      "valid_checking_list": [
+        "#8194a0#81949f#7a6761#8699a4"
+      ]
     },
     "战士": {
       "id": "1-3",
       "name": "战士",
       "level": "普通",
-      "valid_checking_list": []
+      "valid_checking_list": [
+        "#8194a0#81949f#8397a2#8699a4"
+      ]
     },
     "元素灵": {
       "id": "1-4",
@@ -74,7 +80,9 @@
       "id": "3-2",
       "name": "演奏家",
       "level": "稀有",
-      "valid_checking_list": []
+      "valid_checking_list": [
+        "#8b60da#f3db9d#cca873#8f64dd"
+      ]
     },
     "火枪手": {
       "id": "3-3",
@@ -92,7 +100,9 @@
       "id": "3-5",
       "name": "巨剑企鹅",
       "level": "稀有",
-      "valid_checking_list": []
+      "valid_checking_list": [
+        "#8b60da#543f7a#2e2730#8f64dd"
+      ]
     }
   },
   "传说": {
@@ -204,7 +214,9 @@
       "id": "5-14",
       "name": "圣使",
       "level": "神话",
-      "valid_checking_list": []
+      "valid_checking_list": [
+        "#faa239#d8814d#3c0e10#f9a53a"
+      ]
     },
     "爆炸咪": {
       "id": "5-15",
@@ -228,7 +240,9 @@
       "id": "5-18",
       "name": "登神圣使",
       "level": "神话",
-      "valid_checking_list": []
+      "valid_checking_list": [
+        "#faa239#fee0c4#c63728#f9a53a"
+      ]
     }
   }
 }
